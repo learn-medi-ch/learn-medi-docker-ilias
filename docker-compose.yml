@@ -8,6 +8,8 @@ services:
     restart: unless-stopped
     ports:
       - 8080:80
+    volumes:
+      - ../skin_medi_ilias_7:/var/www/html/Customizing/global/skin/skin_medi_ilias_7
   ilias:
     depends_on:
       - database
@@ -30,6 +32,8 @@ services:
       - ILIAS_HTTP_HTTPS_AUTODETECTION_HEADER_VALUE=https
       - ILIAS_COMMON_SERVER_TIMEZONE=Europe/Zurich
       - ILIAS_STYLE_MANAGE_SYSTEM_STYLES=false
+    volumes:
+      - ../skin_medi_ilias_7:/var/www/html/Customizing/global/skin/skin_medi_ilias_7
   cron:
     depends_on:
       - ilias
