@@ -33,7 +33,7 @@ services:
       - ILIAS_SMTP_ENCRYPTION=tls
       - ILIAS_SMPT_USER_FILE=/run/secrets/ilias_smtp_user
       - ILIAS_SMTP_PASSWORD_FILE=/run/secrets/ilias_smtp_password
-    image: learn-medi-ilias/ilias:7.15.2
+    image: learn-medi-ilias/ilias:7.15.5
     secrets:
       - database_ilias_password
       - ilias_root_password
@@ -44,7 +44,7 @@ services:
   nginx:
     depends_on:
       - ilias
-    image: learn-medi-ilias/nginx:7.15.2
+    image: learn-medi-ilias/nginx:7.15.5
     ports:
       - 127.0.0.11:80:80
     volumes:
@@ -56,7 +56,7 @@ services:
     environment:
       - ILIAS_COMMON_CLIENT_ID=medi01
       - ILIAS_CRON_USER_PASSWORD_FILE=/run/secrets/ilias_cron_password
-    image: learn-medi-ilias/cron:7.15.2
+    image: learn-medi-ilias/cron:7.15.5
     secrets:
       - ilias_cron_password
     volumes:
