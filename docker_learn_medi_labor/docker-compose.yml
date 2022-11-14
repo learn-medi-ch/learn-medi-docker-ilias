@@ -1,0 +1,77 @@
+services:
+  database:
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci
+    environment:
+      - MARIADB_DATABASE=ilias
+      - MARIADB_PASSWORD_FILE=/run/secrets/database_ilias_password
+      - MARIADB_ROOT_PASSWORD_FILE=/run/secrets/database_root_password
+      - MARIADB_USER=ilias
+    image: mariadb:latest
+    secrets:
+      - database_ilias_password
+      - database_root_password
+    volumes:
+      - ./update-scripts:/opt/update-scripts
+      - ../database/backups:/var/backups/database
+      - ../database/labor:/var/lib/mysql
+  ilias:
+    depends_on:
+      - database
+    environment:
+      - ILIAS_LUCENE_SEARCH=true
+      - ILIAS_DATABASE_USER=ilias
+      - ILIAS_DATABASE_DATABASE=ilias
+      - ILIAS_DATABASE_PASSWORD_FILE=/run/secrets/database_ilias_password
+      - ILIAS_HTTP_PATH=https://learn.medi.ch
+      - ILIAS_ROOT_USER_PASSWORD_FILE=/run/secrets/ilias_root_password
+      - ILIAS_SYSTEMFOLDER_CONTACT_FIRSTNAME=learn
+      - ILIAS_SYSTEMFOLDER_CONTACT_LASTNAME=medi
+      - ILIAS_SYSTEMFOLDER_CONTACT_EMAIL=martin.studer@medi.ch
+      - ILIAS_COMMON_CLIENT_ID=medi01
+      - ILIAS_SMTP_HOST=...
+      - ILIAS_SMTP_PORT=465
+      - ILIAS_SMTP_ENCRYPTION=tls
+      - ILIAS_SMPT_USER_FILE=/run/secrets/ilias_smtp_user
+      - ILIAS_SMTP_PASSWORD_FILE=/run/secrets/ilias_smtp_password
+    image: learn-medi-ilias/ilias:7.15-1
+    secrets:
+      - database_ilias_password
+      - ilias_root_password
+    volumes:
+      - ./skin_medi_ilias_7:/var/www/html/Customizing/global/skin/skin_medi_ilias_7
+      - ../data/labor:/var/iliasdata
+      - ../log/labor:/var/log/ilias
+  nginx:
+    depends_on:
+      - ilias
+    image: learn-medi-ilias/nginx:7.15-1
+    ports:
+      - 127.0.0.11:80:80
+    volumes:
+      - ./skin_medi_ilias_7:/var/www/html/Customizing/global/skin/skin_medi_ilias_7
+      - ../data/labor/web:/var/iliasdata/web:ro
+  cron:
+    depends_on:
+      - ilias
+    environment:
+      - ILIAS_COMMON_CLIENT_ID=medi01
+      - ILIAS_CRON_USER_PASSWORD_FILE=/run/secrets/ilias_cron_password
+    image: learn-medi-ilias/cron:7.15-1
+    secrets:
+      - ilias_cron_password
+    volumes:
+      - ../data/labor:/var/iliasdata
+      - ../log/labor:/var/log/ilias
+secrets:
+  ilias_root_password:
+    file: "../secrets/ilias_root_password"
+  ilias_cron_password:
+    file: "../secrets/ilias_cron_password"
+  database_ilias_password:
+    file: "../secrets/database_ilias_password"
+  database_root_password:
+    file: "../secrets/database_root_password"
+  ilias-smtp-user:
+    file: "../secrets/ilias_smtp_user"
+  ilias-smtp-password:
+    file: "../secrets/ilias_smtp_password"

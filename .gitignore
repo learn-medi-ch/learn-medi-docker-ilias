@@ -1,1 +1,13 @@
-.idea
+*
+*.*
+!data
+!database
+!docker_build
+!docker_learn_medi_labor
+!docker_learn_medi_prod
+!ilserver
+!log
+!secrets
+!.gitignore
+!README.md
+!docs

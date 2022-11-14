@@ -13,7 +13,7 @@ services:
     volumes:
       - ./update-scripts:/opt/update-scripts
       - ../database/backups:/var/backups/database
-      - ../database/live:/var/lib/mysql
+      - ../database/prod:/var/lib/mysql
   ilias:
     depends_on:
       - database
@@ -38,8 +38,8 @@ services:
       - database_ilias_password
       - ilias_root_password
     volumes:
-      - ../data:/var/iliasdata
-      - ../log:/var/log/ilias
+      - ../data/prod:/var/iliasdata
+      - ../log/prod:/var/log/ilias
   nginx:
     depends_on:
       - ilias
@@ -47,7 +47,7 @@ services:
     ports:
       - 127.0.0.10:80:80
     volumes:
-      - ../data/web:/var/iliasdata/web:ro
+      - ../data/prod/web:/var/iliasdata/web:ro
   cron:
     depends_on:
       - ilias
@@ -58,8 +58,8 @@ services:
     secrets:
       - ilias_cron_password
     volumes:
-      - ../data:/var/iliasdata
-      - ../log:/var/log/ilias
+      - ../data/prod:/var/iliasdata
+      - ../log/prod:/var/log/ilias
   ilserver:
     depends_on:
       - ilias
@@ -67,8 +67,8 @@ services:
       - ILIAS_COMMON_CLIENT_ID=medi01
     image: learn-medi-ilias/ilserver:7.15-1
     volumes:
-      - ../ilserver:/var/ilserverdata
-      - ../data:/var/iliasdata:ro
+      - ../ilserver/prod:/var/ilserverdata
+      - ../data/prod:/var/iliasdata:ro
 secrets:
   ilias_root_password:
     file: "../secrets/ilias_root_password"
