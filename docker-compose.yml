@@ -1,0 +1,90 @@
+services:
+  database:
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci
+    environment:
+      - MARIADB_DATABASE=ilias
+      - MARIADB_PASSWORD_FILE=/run/secrets/database_ilias_password
+      - MARIADB_ROOT_PASSWORD_FILE=/run/secrets/database_root_password
+      - MARIADB_USER=ilias
+    image: mariadb:latest
+    secrets:
+      - database_ilias_password
+      - database_root_password
+    volumes:
+      - ../database/backups:/var/backups/database
+      - ../database/live:/var/lib/mysql
+  sftp:
+    image: fluxms/flux-eco-sidecar-sftp:latest
+    ports:
+      - 2222:22
+    volumes:
+      - ../share/imports:/home/share
+    environment:
+      - SFTP_SHARE_LOGIN_FILE=/run/secrets/sftp_share_login_imports
+      - SFTP_SHARE_PASSWORD_FILE=/run/secrets/sftp_share_password_imports
+    secrets:
+      - sftp_share_login_imports
+      - sftp_share_password_imports
+  ilias:
+    depends_on:
+      - database
+    environment:
+      - ILIAS_LUCENE_SEARCH=true
+      - ILIAS_DATABASE_USER=ilias
+      - ILIAS_DATABASE_DATABASE=ilias
+      - ILIAS_DATABASE_PASSWORD_FILE=/run/secrets/database_ilias_password
+      - ILIAS_HTTP_PATH=https://learn.medi.ch
+      - ILIAS_ROOT_USER_PASSWORD_FILE=/run/secrets/ilias_root_password
+      - ILIAS_SYSTEMFOLDER_CONTACT_FIRSTNAME=learn
+      - ILIAS_SYSTEMFOLDER_CONTACT_LASTNAME=medi
+      - ILIAS_SYSTEMFOLDER_CONTACT_EMAIL=martin.studer@medi.ch
+      - ILIAS_COMMON_CLIENT_ID=medi01
+    image: learn-medi-docker-ilias/ilias:7.16-1
+    secrets:
+      - database_ilias_password
+      - ilias_root_password
+    volumes:
+      - ../data:/var/iliasdata
+      - ../log:/var/log/ilias
+  nginx:
+    depends_on:
+      - ilias
+    image: learn-medi-docker-ilias/nginx:7.16-1
+    ports:
+      - 127.0.0.10:80:80
+    volumes:
+      - ../data/web:/var/iliasdata/web:ro
+  cron:
+    depends_on:
+      - ilias
+    environment:
+      - ILIAS_COMMON_CLIENT_ID=medi01
+      - ILIAS_CRON_USER_PASSWORD_FILE=/run/secrets/ilias_cron_password
+    image: learn-medi-docker-ilias/cron:7.16-1
+    secrets:
+      - ilias_cron_password
+    volumes:
+      - ../data:/var/iliasdata
+      - ../log:/var/log/ilias
+  ilserver:
+    depends_on:
+      - ilias
+    environment:
+      - ILIAS_COMMON_CLIENT_ID=medi01
+    image: learn-medi-docker-ilias/ilserver:7.16-1
+    volumes:
+      - ../ilserver:/var/ilserverdata
+      - ../data:/var/iliasdata:ro
+secrets:
+  ilias_root_password:
+    file: "../secrets/ilias_root_password"
+  ilias_cron_password:
+    file: "../secrets/ilias_cron_password"
+  database_ilias_password:
+    file: "../secrets/database_ilias_password"
+  database_root_password:
+    file: "../secrets/database_root_password"
+  sftp_share_login_imports:
+    file: "../secrets/sftp_share_login_imports"
+  sftp_share_password_imports:
+    file: "../secrets/sftp_share_password_imports"
