@@ -6,7 +6,7 @@ services:
       - MARIADB_PASSWORD_FILE=/run/secrets/database_ilias_password
       - MARIADB_ROOT_PASSWORD_FILE=/run/secrets/database_root_password
       - MARIADB_USER=ilias
-    image: mariadb:latest
+    image: mariadb:10.8.2
     secrets:
       - database_ilias_password
       - database_root_password
@@ -16,7 +16,7 @@ services:
   sftp:
     image: fluxms/flux-eco-sidecar-sftp:latest
     ports:
-      - 2222:22
+      - 10.100.12.192:2222:22
     volumes:
       - ../share/imports:/home/share
     environment:
@@ -51,7 +51,7 @@ services:
       - ilias
     image: learn-medi-docker-ilias/nginx:7.16-1
     ports:
-      - 127.0.0.10:80:80
+      - 10.100.12.192:80:80
     volumes:
       - ../data/web:/var/iliasdata/web:ro
   cron:

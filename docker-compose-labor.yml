@@ -6,7 +6,7 @@ services:
       - MARIADB_PASSWORD_FILE=/run/secrets/database_ilias_password
       - MARIADB_ROOT_PASSWORD_FILE=/run/secrets/database_root_password
       - MARIADB_USER=ilias
-    image: mariadb:latest
+    image: mariadb:10.8.2
     secrets:
       - database_ilias_password
       - database_root_password
