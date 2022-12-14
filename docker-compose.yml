@@ -19,6 +19,7 @@ services:
       - 10.100.12.192:2222:22
     volumes:
       - ../share/imports:/home/share
+      - ../keys/sftp_share_imports:/etc/ssh/keys
     environment:
       - SFTP_SHARE_LOGIN_FILE=/run/secrets/sftp_share_login_imports
       - SFTP_SHARE_PASSWORD_FILE=/run/secrets/sftp_share_password_imports

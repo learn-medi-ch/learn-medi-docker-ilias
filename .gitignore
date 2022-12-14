@@ -3,5 +3,4 @@
 !docs
 !.gitignore
 !docker-compose.yml
-!docker-compose-labor.yml
 !README.md
