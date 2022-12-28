@@ -22,9 +22,9 @@ RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxapps/Vi
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxapps/ViMPCron/archive/refs/tags/v2.0.0.tar.gz /var/www/html/Customizing/global/plugins/Services/Cron/CronHook/ViMPCron
 
 # Plugin SrContainerObjectMenu
-RUN /flux-ilias-ilias-base/bin/install-archive https://github.com/fluxfw/SrContainerObjectMenu/archive/refs/tags/v2.6.1.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrContainerObjectMenu
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrContainerObjectMenu/archive/refs/tags/v2.6.1.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrContainerObjectMenu
 # Plugin SrFileObjectTypeIcons
-RUN /flux-ilias-ilias-base/bin/install-archive https://github.com/fluxfw/SrFileObjectTypeIcons/archive/refs/tags/v1.3.0.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrFileObjectTypeIcons
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrFileObjectTypeIcons/archive/refs/tags/v1.3.0.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrFileObjectTypeIcons
 
 # Skin
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/learn-medi-ch/skin_medi_ilias_7/archive/refs/heads/main.tar.gz /var/www/html/Customizing/global/skin/skin_medi_ilias_7
