@@ -45,7 +45,8 @@ services:
       - database_ilias_password
       - ilias_root_password
     volumes:
-      - ../data:/var/iliasdata
+      - ../iliasdata-web:/var/iliasdata/web
+      - ../iliasdata:/var/iliasdata
       - ../log:/var/log/ilias
   nginx:
     depends_on:
@@ -54,7 +55,7 @@ services:
     ports:
       - 10.100.12.192:80:80
     volumes:
-      - ../data/web:/var/iliasdata/web:ro
+      - ../iliasdata-web:/var/iliasdata/web:ro
   cron:
     depends_on:
       - ilias
@@ -65,7 +66,8 @@ services:
     secrets:
       - ilias_cron_password
     volumes:
-      - ../data:/var/iliasdata
+      - ../iliasdata-web:/var/iliasdata/web
+      - ../iliasdata:/var/iliasdata
       - ../log:/var/log/ilias
   ilserver:
     depends_on:
@@ -74,8 +76,9 @@ services:
       - ILIAS_COMMON_CLIENT_ID=medi01
     image: learn-medi-docker-ilias/ilserver:7.16-2
     volumes:
+      - ../iliasdata-web:/var/iliasdata/web
+      - ../iliasdata:/var/iliasdata
       - ../ilserver:/var/ilserverdata
-      - ../data:/var/iliasdata:ro
 secrets:
   ilias_root_password:
     file: "../secrets/ilias_root_password"
