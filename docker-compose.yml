@@ -13,8 +13,6 @@ services:
       - sftp_share_login_imports
       - sftp_share_password_imports
   ilias:
-    depends_on:
-      - database
     environment:
       - ILIAS_LUCENE_SEARCH=true
       - ILIAS_DATABASE_HOST=10.100.21.132
