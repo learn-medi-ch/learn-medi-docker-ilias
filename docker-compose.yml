@@ -40,10 +40,17 @@ services:
       - ILIAS_SYSTEMFOLDER_CONTACT_LASTNAME=medi
       - ILIAS_SYSTEMFOLDER_CONTACT_EMAIL=martin.studer@medi.ch
       - ILIAS_COMMON_CLIENT_ID=medi01
+      - ILIAS_SMTP_HOST=mail.infomaniak.com
+      - ILIAS_SMTP_PORT=465
+      - ILIAS_SMTP_ENCRYPTION=TLS
+      - ILIAS_SMTP_USER_FILE=/run/secrets/ilias_smtp_user
+      - ILIAS_SMTP_PASSWORD_FILE=/run/secrets/ilias_smtp_password      
     image: learn-medi-docker-ilias/ilias:7.16-2
     secrets:
       - database_ilias_password
       - ilias_root_password
+      - ilias_smtp_user
+      - ilias_smtp_password
     volumes:
       - ../iliasdata-web:/var/iliasdata/web
       - ../iliasdata:/var/iliasdata
@@ -92,3 +99,7 @@ secrets:
     file: "../secrets/sftp_share_login_imports"
   sftp_share_password_imports:
     file: "../secrets/sftp_share_password_imports"
+  ilias_smtp_user:
+    file: "../secrets/ilias_smtp_user"
+  ilias_smtp_password:
+    file: "../secrets/ilias_smtp_password"
