@@ -1,18 +1,4 @@
 services:
-  database:
-    command: --character-set-server=utf8 --collation-server=utf8_general_ci
-    environment:
-      - MARIADB_DATABASE=ilias
-      - MARIADB_PASSWORD_FILE=/run/secrets/database_ilias_password
-      - MARIADB_ROOT_PASSWORD_FILE=/run/secrets/database_root_password
-      - MARIADB_USER=ilias
-    image: mariadb:10.8.2
-    secrets:
-      - database_ilias_password
-      - database_root_password
-    volumes:
-      - ../database/backups:/var/backups/database
-      - ../database/live:/var/lib/mysql
   sftp:
     image: fluxms/flux-eco-sidecar-sftp:latest
     ports:
@@ -31,6 +17,7 @@ services:
       - database
     environment:
       - ILIAS_LUCENE_SEARCH=true
+      - ILIAS_DATABASE_HOST=10.100.21.132
       - ILIAS_DATABASE_USER=ilias
       - ILIAS_DATABASE_DATABASE=ilias
       - ILIAS_DATABASE_PASSWORD_FILE=/run/secrets/database_ilias_password
@@ -93,8 +80,6 @@ secrets:
     file: "../secrets/ilias_cron_password"
   database_ilias_password:
     file: "../secrets/database_ilias_password"
-  database_root_password:
-    file: "../secrets/database_root_password"
   sftp_share_login_imports:
     file: "../secrets/sftp_share_login_imports"
   sftp_share_password_imports:
