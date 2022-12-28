@@ -12,6 +12,9 @@ RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-api.sh v2022-11-17-1
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/srsolutionsag/UserTakeOver/archive/refs/heads/master.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/UserTakeOver
 # Plugin External Content
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/ilifau/ExternalContent/archive/53bcb9075fcf4e92053ffa26b773706bd1ce219a.tar.gz /var/www/html/Customizing/global/plugins/Services/Repository/RepositoryObject/ExternalContent
+# Plugin
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxapps/LiveVoting/archive/refs/tags/v6.0.2.tar.gz /var/www/html/Customizing/global/plugins/Services/Repository/RepositoryObject/LiveVoting
+
 # Skin
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/learn-medi-ch/skin_medi_ilias_7/archive/refs/heads/main.tar.gz /var/www/html/Customizing/global/skin/skin_medi_ilias_7
 
