@@ -1,6 +1,6 @@
 services:
   sftp:
-    image: fluxms/flux-eco-sidecar-sftp:latest
+    image: fluxms/flux-eco-sftp-sidecar:latest
     ports:
       - 10.100.12.192:2222:22
     volumes:
