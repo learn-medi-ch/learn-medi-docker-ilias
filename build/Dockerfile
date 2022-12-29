@@ -27,7 +27,7 @@ RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrCo
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrFileObjectTypeIcons/archive/refs/tags/v1.3.0.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrFileObjectTypeIcons
 
 # Skin
-RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/learn-medi-ch/skin_medi_ilias_7/archive/refs/heads/main.tar.gz /var/www/html/Customizing/global/skin/skin_medi_ilias_7
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/learn-medi-ch/skin_medi_ilias_7/archive/refs/tags/v2022-12-29-1.tar.gz /var/www/html/Customizing/global/skin/skin_medi_ilias_7
 
 FROM fluxfw/flux-ilias-nginx-base:latest AS nginx
 COPY --from=ilias /var/www/html /var/www/html
