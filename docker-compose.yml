@@ -29,7 +29,9 @@ services:
       - ILIAS_SMTP_PORT=465
       - ILIAS_SMTP_ENCRYPTION=TLS
       - ILIAS_SMTP_USER_FILE=/run/secrets/ilias_smtp_user
-      - ILIAS_SMTP_PASSWORD_FILE=/run/secrets/ilias_smtp_password      
+      - ILIAS_SMTP_PASSWORD_FILE=/run/secrets/ilias_smtp_password
+      - ILIAS_LANGUAGE_DEFAULT_LANGUAGE=de
+      - ILIAS_LANGUAGE_INSTALL_LANGUAGES=en de fr
     image: learn-medi-docker-ilias/ilias:7.16-3
     secrets:
       - database_ilias_password
