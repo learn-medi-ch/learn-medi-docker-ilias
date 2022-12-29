@@ -1,6 +1,6 @@
 
 #!/bin/bash
-docker build . --pull --target ilias -t learn-medi-docker-ilias/ilias:7.16-2
-docker build . --pull --target nginx -t learn-medi-docker-ilias/nginx:7.16-2
-docker build . --pull --target cron -t learn-medi-docker-ilias/cron:7.16-2
-docker build . --pull --target ilserver -t learn-medi-docker-ilias/ilserver:7.16-2
+docker build . --target ilias -t learn-medi-docker-ilias/ilias:7.16-3
+docker build . --target nginx -t learn-medi-docker-ilias/nginx:7.16-3
+docker build . --target cron -t learn-medi-docker-ilias/cron:7.16-3
+docker build . --target ilserver -t learn-medi-docker-ilias/ilserver:7.16-3
