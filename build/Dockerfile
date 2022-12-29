@@ -29,8 +29,6 @@ RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrFi
 # Skin
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/learn-medi-ch/skin_medi_ilias_7/archive/refs/heads/main.tar.gz /var/www/html/Customizing/global/skin/skin_medi_ilias_7
 
-COPY "./medi_logo.jpg" "$ILIAS_WEB_DIR/Services/Mail/templates/default/img/ilias_logo.jpg"
-
 FROM fluxfw/flux-ilias-nginx-base:latest AS nginx
 COPY --from=ilias /var/www/html /var/www/html
 RUN /flux-ilias-nginx-base/bin/install-flux-ilias-rest-api.sh
