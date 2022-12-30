@@ -32,6 +32,8 @@ services:
       - ILIAS_SMTP_PASSWORD_FILE=/run/secrets/ilias_smtp_password
       - ILIAS_LANGUAGE_DEFAULT_LANGUAGE=de
       - ILIAS_LANGUAGE_INSTALL_LANGUAGES=en de fr
+      - ILIAS_HTTP_HTTPS_AUTODETECTION_HEADER_NAME=X-Forwarded-Proto
+      - ILIAS_HTTP_HTTPS_AUTODETECTION_HEADER_VALUE=https
     image: learn-medi-docker-ilias/ilias:7.16-3
     secrets:
       - database_ilias_password
