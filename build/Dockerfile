@@ -12,7 +12,7 @@ RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/srsolutions
 # Plugin External Content
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/ilifau/ExternalContent/archive/53bcb9075fcf4e92053ffa26b773706bd1ce219a.tar.gz /var/www/html/Customizing/global/plugins/Services/Repository/RepositoryObject/ExternalContent
 # Plugin LiveVoting
-RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxapps/LiveVoting/archive/refs/tags/v6.0.2.tar.gz /var/www/html/Customizing/global/plugins/Services/Repository/RepositoryObject/LiveVoting
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxapps/LiveVoting/archive/refs/tags/v2023.01.18.tar.gz /var/www/html/Customizing/global/plugins/Services/Repository/RepositoryObject/LiveVoting
 # Plugin SrContainerObjectTree
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrContainerObjectTree/archive/refs/tags/v2.15.0.tar.gz /var/www/html/Customizing/global/plugins/Services/Repository/RepositoryObject/SrContainerObjectTree
 # Plugin ViMP
