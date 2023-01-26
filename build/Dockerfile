@@ -12,7 +12,7 @@ RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/srsolutions
 # Plugin External Content
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/ilifau/ExternalContent/archive/53bcb9075fcf4e92053ffa26b773706bd1ce219a.tar.gz /var/www/html/Customizing/global/plugins/Services/Repository/RepositoryObject/ExternalContent
 # Plugin LiveVoting
-RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxapps/LiveVoting/archive/refs/tags/v2023.01.19.tar.gz /var/www/html/Customizing/global/plugins/Services/Repository/RepositoryObject/LiveVoting
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxapps/LiveVoting/archive/refs/tags/v2023.01.26.tar.gz/var/www/html/Customizing/global/plugins/Services/Repository/RepositoryObject/LiveVoting
 # Plugin SrContainerObjectTree
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrContainerObjectTree/archive/refs/tags/v2.15.0.tar.gz /var/www/html/Customizing/global/plugins/Services/Repository/RepositoryObject/SrContainerObjectTree
 # Plugin ViMP
@@ -32,6 +32,3 @@ FROM fluxfw/flux-ilias-nginx-base:latest AS nginx
 COPY --from=ilias /var/www/html /var/www/html
 COPY nginx/livevoting.conf /flux-ilias-nginx-base/src/custom/
 RUN /flux-ilias-nginx-base/bin/install-flux-ilias-rest-api.sh
-
-FROM fluxfw/flux-ilias-ilserver-base:java8 AS ilserver
-COPY --from=ilias /var/www/html /var/www/html

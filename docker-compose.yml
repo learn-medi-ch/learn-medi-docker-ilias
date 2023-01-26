@@ -14,7 +14,7 @@ services:
       - sftp_share_password_imports
   ilias:
     environment:
-      - ILIAS_LUCENE_SEARCH=true
+      - ILIAS_LUCENE_SEARCH=false
       - ILIAS_DATABASE_HOST=10.100.21.132
       - ILIAS_DATABASE_USER=ilias
       - ILIAS_DATABASE_DATABASE=ilias
@@ -67,16 +67,6 @@ services:
       - ../iliasdata-web:/var/iliasdata/web
       - ../iliasdata:/var/iliasdata
       - ../log:/var/log/ilias
-  ilserver:
-    depends_on:
-      - ilias
-    environment:
-      - ILIAS_COMMON_CLIENT_ID=medi01
-    image: learn-medi-docker-ilias/ilserver:2023-01-19-1
-    volumes:
-      - ../iliasdata-web:/var/iliasdata/web
-      - ../iliasdata:/var/iliasdata
-      - ../ilserver:/var/ilserverdata
 secrets:
   ilias_root_password:
     file: "../secrets/ilias_root_password"
