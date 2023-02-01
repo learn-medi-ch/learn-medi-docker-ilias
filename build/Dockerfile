@@ -28,6 +28,10 @@ RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrFi
 # Skin
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/learn-medi-ch/skin_medi_ilias_7/archive/refs/tags/v2022-12-29-1.tar.gz /var/www/html/Customizing/global/skin/skin_medi_ilias_7
 
+# PDF Generation
+RUN /flux-ilias-ilias-base/bin/install-wkhtmltopdf.sh
+COPY --from=surnet/alpine-wkhtmltopdf:3.16.2-0.12.6-small /bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
+
 FROM fluxfw/flux-ilias-nginx-base:latest AS nginx
 COPY --from=ilias /var/www/html /var/www/html
 COPY nginx/livevoting.conf /flux-ilias-nginx-base/src/custom/
