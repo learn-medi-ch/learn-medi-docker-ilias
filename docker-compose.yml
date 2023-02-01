@@ -25,9 +25,9 @@ services:
       - ILIAS_SYSTEMFOLDER_CONTACT_LASTNAME=medi
       - ILIAS_SYSTEMFOLDER_CONTACT_EMAIL=learn@medi.ch
       - ILIAS_COMMON_CLIENT_ID=medi01
-      - ILIAS_SMTP_HOST=mail.infomaniak.com
+      - ILIAS_SMTP_HOST=server2.ahja.ch
       - ILIAS_SMTP_PORT=465
-      - ILIAS_SMTP_ENCRYPTION=ssl
+      - ILIAS_SMTP_ENCRYPTION=587
       - ILIAS_SMTP_USER_FILE=/run/secrets/ilias_smtp_user
       - ILIAS_SMTP_PASSWORD_FILE=/run/secrets/ilias_smtp_password
       - ILIAS_LANGUAGE_DEFAULT_LANGUAGE=de
