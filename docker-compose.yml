@@ -23,10 +23,10 @@ services:
       - ILIAS_ROOT_USER_PASSWORD_FILE=/run/secrets/ilias_root_password
       - ILIAS_SYSTEMFOLDER_CONTACT_FIRSTNAME=learn
       - ILIAS_SYSTEMFOLDER_CONTACT_LASTNAME=medi
-      - ILIAS_SYSTEMFOLDER_CONTACT_EMAIL=martin.studer@medi.ch
+      - ILIAS_SYSTEMFOLDER_CONTACT_EMAIL=learn@medi.ch
       - ILIAS_COMMON_CLIENT_ID=medi01
-      - ILIAS_SMTP_HOST=mail.infomaniak.com
-      - ILIAS_SMTP_PORT=465
+      - ILIAS_SMTP_HOST=mailout.medi.ch
+      - ILIAS_SMTP_PORT=587
       - ILIAS_SMTP_ENCRYPTION=ssl
       - ILIAS_SMTP_USER_FILE=/run/secrets/ilias_smtp_user
       - ILIAS_SMTP_PASSWORD_FILE=/run/secrets/ilias_smtp_password
@@ -34,7 +34,7 @@ services:
       - ILIAS_LANGUAGE_INSTALL_LANGUAGES=en de fr
       - ILIAS_HTTP_HTTPS_AUTODETECTION_HEADER_NAME=X-Forwarded-Proto
       - ILIAS_HTTP_HTTPS_AUTODETECTION_HEADER_VALUE=https
-    image: learn-medi-docker-ilias/ilias:2023-01-19-1
+    image: learn-medi-docker-ilias/ilias:2023-02-1-1
     secrets:
       - database_ilias_password
       - ilias_root_password
@@ -47,7 +47,7 @@ services:
   nginx:
     depends_on:
       - ilias
-    image: learn-medi-docker-ilias/nginx:2023-01-19-1
+    image: learn-medi-docker-ilias/nginx:2023-02-1-1
     ports:
       - 10.100.12.192:80:80
     volumes:
@@ -60,7 +60,7 @@ services:
     environment:
       - ILIAS_COMMON_CLIENT_ID=medi01
       - ILIAS_CRON_USER_PASSWORD_FILE=/run/secrets/ilias_cron_password
-    image: learn-medi-docker-ilias/ilias:2023-01-19-1
+    image: learn-medi-docker-ilias/ilias:2023-02-1-1
     secrets:
       - ilias_cron_password
     volumes:
