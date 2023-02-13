@@ -1,11 +1,11 @@
 # syntax=docker/dockerfile:1
 FROM fluxfw/flux-ilias-ilias-base:php7.4 AS ilias
-RUN /flux-ilias-ilias-base/bin/install-ilias-core.sh 7.16
+RUN /flux-ilias-ilias-base/bin/install-ilias-core.sh 7.18
 
 # flux-ilias-rest
-RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-api.sh v2023-01-31-2
-RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-helper-plugin.sh v2023-01-31-1
-RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-object-helper-plugin.sh v2023-01-31-1
+RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-api.sh v2023-02-10-2
+RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-helper-plugin.sh v2023-02-09-1
+RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-object-helper-plugin.sh v2023-02-09-1
 
 # Plugin UserTakeOver
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/srsolutionsag/UserTakeOver/archive/aefb7b18790e60e748bb4726ab116fe64b2a48cc.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/UserTakeOver
@@ -24,6 +24,12 @@ RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxapps/Vi
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrContainerObjectMenu/archive/refs/tags/v2.6.1.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrContainerObjectMenu
 # Plugin SrFileObjectTypeIcons
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrFileObjectTypeIcons/archive/refs/tags/v1.3.0.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrFileObjectTypeIcons
+
+# User Enrolment / because of Excel-Import-To-Course
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrUserEnrolment/archive/refs/tags/v3.23.0.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrUserEnrolment
+WORKDIR /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrUserEnrolment
+RUN ./vendor/srag/dic/bin/ilias7_core_apply_ilctrl_patch.sh
+WORKDIR /var/www/html
 
 # Skin
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/learn-medi-ch/skin_medi_ilias_7/archive/refs/tags/v2022-12-29-1.tar.gz /var/www/html/Customizing/global/skin/skin_medi_ilias_7
