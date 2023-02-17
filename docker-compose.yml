@@ -35,7 +35,7 @@ services:
       - ILIAS_LANGUAGE_INSTALL_LOCAL_LANGUAGES=en de fr
       - ILIAS_HTTP_HTTPS_AUTODETECTION_HEADER_NAME=X-Forwarded-Proto
       - ILIAS_HTTP_HTTPS_AUTODETECTION_HEADER_VALUE=https
-    image: learn-medi-docker-ilias/ilias:2023-02-13-1
+    image: learn-medi-docker-ilias/ilias:2023-02-17-1
     secrets:
       - database_ilias_password
       - ilias_root_password
@@ -48,7 +48,7 @@ services:
   nginx:
     depends_on:
       - ilias
-    image: learn-medi-docker-ilias/nginx:2023-02-13-1
+    image: learn-medi-docker-ilias/nginx:2023-02-17-1
     ports:
       - 10.100.12.192:80:80
     volumes:
@@ -61,7 +61,7 @@ services:
     environment:
       - ILIAS_COMMON_CLIENT_ID=medi01
       - ILIAS_CRON_USER_PASSWORD_FILE=/run/secrets/ilias_cron_password
-    image: learn-medi-docker-ilias/ilias:2023-02-13-1
+    image: learn-medi-docker-ilias/ilias:2023-02-17-1
     secrets:
       - ilias_cron_password
     volumes:
