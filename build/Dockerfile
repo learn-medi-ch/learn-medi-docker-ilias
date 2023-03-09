@@ -41,4 +41,6 @@ COPY --from=surnet/alpine-wkhtmltopdf:3.16.2-0.12.6-small /bin/wkhtmltopdf /usr/
 FROM fluxfw/flux-ilias-nginx-base:latest AS nginx
 COPY --from=ilias /var/www/html /var/www/html
 COPY nginx/livevoting.conf /flux-ilias-nginx-base/src/custom/
+COPY nginx/medi-eco-frontend.conf /flux-ilias-nginx-base/src/custom/
+
 RUN /flux-ilias-nginx-base/bin/install-flux-ilias-rest-api.sh
