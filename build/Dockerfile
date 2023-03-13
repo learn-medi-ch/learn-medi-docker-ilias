@@ -3,9 +3,9 @@ FROM fluxfw/flux-ilias-ilias-base:php7.4 AS ilias
 RUN /flux-ilias-ilias-base/bin/install-ilias-core.sh 7.18
 
 # flux-ilias-rest
-RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-api.sh v2023-02-13-1
-RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-helper-plugin.sh v2023-02-13-1
-RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-object-helper-plugin.sh v2023-02-13-1
+RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-api.sh v2023-02-10-2
+RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-helper-plugin.sh v2023-02-09-1
+RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-object-helper-plugin.sh v2023-02-09-1
 
 # Plugin UserTakeOver
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/srsolutionsag/UserTakeOver/archive/aefb7b18790e60e748bb4726ab116fe64b2a48cc.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/UserTakeOver
@@ -24,7 +24,7 @@ RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxapps/Vi
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrContainerObjectMenu/archive/refs/tags/v2.6.1.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrContainerObjectMenu
 # Plugin SrFileObjectTypeIcons
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrFileObjectTypeIcons/archive/refs/tags/v1.3.0.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrFileObjectTypeIcons
-
+v2023-02-10-2
 # User Enrolment / because of Excel-Import-To-Course
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrUserEnrolment/archive/refs/tags/v3.23.0.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrUserEnrolment
 WORKDIR /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrUserEnrolment
