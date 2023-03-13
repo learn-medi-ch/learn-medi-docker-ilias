@@ -24,7 +24,7 @@ RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxapps/Vi
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrContainerObjectMenu/archive/refs/tags/v2.6.1.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrContainerObjectMenu
 # Plugin SrFileObjectTypeIcons
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrFileObjectTypeIcons/archive/refs/tags/v1.3.0.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrFileObjectTypeIcons
-v2023-02-10-2
+
 # User Enrolment / because of Excel-Import-To-Course
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/fluxfw/SrUserEnrolment/archive/refs/tags/v3.23.0.tar.gz /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrUserEnrolment
 WORKDIR /var/www/html/Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrUserEnrolment
