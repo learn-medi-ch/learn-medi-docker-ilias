@@ -43,5 +43,7 @@ COPY --from=ilias /var/www/html /var/www/html
 COPY nginx/livevoting.conf /flux-ilias-nginx-base/src/custom/
 COPY nginx/medi-eco-frontend.conf /flux-ilias-nginx-base/src/custom/
 COPY nginx/medi-eco-book-stack-query-actions.conf /flux-ilias-nginx-base/src/custom/
+COPY nginx/flux-eco-learnplaces-frontend.conf /flux-ilias-nginx-base/src/custom/
+
 
 RUN /flux-ilias-nginx-base/bin/install-flux-ilias-rest-api.sh
