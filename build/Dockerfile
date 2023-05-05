@@ -1,6 +1,9 @@
 # syntax=docker/dockerfile:1
 FROM fluxfw/flux-ilias-ilias-base:php7.4 AS ilias
-RUN /flux-ilias-ilias-base/bin/install-ilias-core.sh 7.18
+RUN /flux-ilias-ilias-base/bin/install-ilias-core.sh 7.21
+
+#temporary fr language patch
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/mstuder/ILIAS/archive/8977984b4e6643a1443b3ddf5a5bcfa927e65ea0.tar.gz /var/www/html
 
 # flux-ilias-rest
 RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-api.sh v2023-02-10-2
@@ -40,6 +43,7 @@ COPY --from=surnet/alpine-wkhtmltopdf:3.16.2-0.12.6-small /bin/wkhtmltopdf /usr/
 
 FROM fluxfw/flux-ilias-nginx-base:latest AS nginx
 COPY --from=ilias /var/www/html /var/www/html
+COPY nginx/show-ilias-login-as-default-page.conf /flux-ilias-nginx-base/src/custom/
 COPY nginx/livevoting.conf /flux-ilias-nginx-base/src/custom/
 COPY nginx/medi-eco-frontend.conf /flux-ilias-nginx-base/src/custom/
 COPY nginx/medi-eco-book-stack-query-actions.conf /flux-ilias-nginx-base/src/custom/
