@@ -3,7 +3,7 @@ FROM fluxfw/flux-ilias-ilias-base:php7.4 AS ilias
 RUN /flux-ilias-ilias-base/bin/install-ilias-core.sh 7.21
 
 #temporary fr language patch
-RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/mstuder/ILIAS/archive/8977984b4e6643a1443b3ddf5a5bcfa927e65ea0.tar.gz /var/www/html
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/mstuder/ILIAS/archive/edab07aa22a9cb32f62165230b98e52dd52973a5.tar.gz /var/www/html
 
 # flux-ilias-rest
 RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-api.sh v2023-05-05-1
