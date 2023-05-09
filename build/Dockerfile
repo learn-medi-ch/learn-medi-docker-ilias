@@ -35,7 +35,7 @@ RUN ./vendor/srag/dic/bin/ilias7_core_apply_ilctrl_patch.sh
 WORKDIR /var/www/html
 
 # Skin
-RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/learn-medi-ch/skin_medi_ilias_7/archive/refs/tags/v2023-04-25-2.tar.gz /var/www/html/Customizing/global/skin/skin_medi_ilias_7
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/learn-medi-ch/skin_medi_ilias_7/archive/refs/tags/v2023-05-09-1.tar.gz /var/www/html/Customizing/global/skin/skin_medi_ilias_7
 
 # PDF Generation
 RUN /flux-ilias-ilias-base/bin/install-wkhtmltopdf.sh
