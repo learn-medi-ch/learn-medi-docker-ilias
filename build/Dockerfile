@@ -6,7 +6,7 @@ RUN /flux-ilias-ilias-base/bin/install-ilias-core.sh 7.21
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/mstuder/ILIAS/archive/edab07aa22a9cb32f62165230b98e52dd52973a5.tar.gz /var/www/html
 
 # flux-ilias-rest
-RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-api.sh v2023-05-05-1
+RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-api.sh v2023-05-09-2
 RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-helper-plugin.sh v2023-04-03-1
 RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-object-helper-plugin.sh v2023-05-01-1
 
