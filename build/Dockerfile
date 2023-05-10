@@ -35,7 +35,9 @@ RUN ./vendor/srag/dic/bin/ilias7_core_apply_ilctrl_patch.sh
 WORKDIR /var/www/html
 
 # Skin
-RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/learn-medi-ch/skin_medi_ilias_7/archive/refs/tags/v2023-05-09-2.tar.gz /var/www/html/Customizing/global/skin/skin_medi_ilias_7
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/learn-medi-ch/skin_medi_ilias_7/archive/refs/tags/v2023-05-10-1.tar.gz /var/www/html/Customizing/global/skin/skin_medi_ilias_7
+
+COPY termsOfService/terms_of_service.html /var/www/html/Customizing/global/skin/medi/terms_of_service.html
 
 # PDF Generation
 RUN /flux-ilias-ilias-base/bin/install-wkhtmltopdf.sh
@@ -48,6 +50,6 @@ COPY nginx/livevoting.conf /flux-ilias-nginx-base/src/custom/
 COPY nginx/medi-eco-frontend.conf /flux-ilias-nginx-base/src/custom/
 COPY nginx/medi-eco-book-stack-query-actions.conf /flux-ilias-nginx-base/src/custom/
 COPY nginx/flux-eco-learnplaces-frontend.conf /flux-ilias-nginx-base/src/custom/
-
+COPY termsOfService/terms_of_service.html /var/www/html/Customizing/global/skin/medi/terms_of_service.html
 
 RUN /flux-ilias-nginx-base/bin/install-flux-ilias-rest-api.sh
