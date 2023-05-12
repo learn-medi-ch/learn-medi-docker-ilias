@@ -2,8 +2,9 @@
 FROM fluxfw/flux-ilias-ilias-base:php7.4 AS ilias
 RUN /flux-ilias-ilias-base/bin/install-ilias-core.sh 7.21
 
-#temporary fr language patch
-RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/mstuder/ILIAS/archive/edab07aa22a9cb32f62165230b98e52dd52973a5.tar.gz /var/www/html
+#temporary update to latest 7.21 - because of image upload bug in test & assessment
+RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/mstuder/ILIAS/archive/b989cfbf9d480dd574878e6b7550ddcf844f81ba.tar.gz /var/www/html
+
 
 # flux-ilias-rest
 RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-api.sh v2023-05-09-2
