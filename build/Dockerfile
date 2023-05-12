@@ -5,7 +5,6 @@ RUN /flux-ilias-ilias-base/bin/install-ilias-core.sh 7.21
 #temporary update to latest 7.21 - because of image upload bug in test & assessment
 RUN /flux-ilias-ilias-base/bin/install-archive.sh https://github.com/mstuder/ILIAS/archive/b989cfbf9d480dd574878e6b7550ddcf844f81ba.tar.gz /var/www/html
 
-
 # flux-ilias-rest
 RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-api.sh v2023-05-09-2
 RUN /flux-ilias-ilias-base/bin/install-flux-ilias-rest-helper-plugin.sh v2023-04-03-1
